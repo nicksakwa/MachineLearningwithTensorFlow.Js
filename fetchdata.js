@@ -1,4 +1,4 @@
-const fs=require('fs');
+const fs=require('fs').promises;
 const path =require('path');
 function extractData(obj){
     return {x: obj.Horsepower, y: obj.Miles_per_Gallon };
@@ -9,15 +9,11 @@ function extractData(obj){
 
  async function runTF(){
     try {
-    const fetch = await import('node-fetch').then(module => module.default);
-    const filePath = path.join('file://',  __dirname,  'cardata.json');
-    const jsonData = await fetch(filePath);
-    if (!jsonData.ok){
-        throw new Error('HTTP error! status: ${jsonData.status}');
-    let values = await jsonData.json();
-    values = values.map(extractData).filter(removeErrors);
+    const filePath = path.join( __dirname,  'cardata.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    const values = JSON.parse(data);
+
     console.log(values);
-    }
     }
     catch (error){
         console.error("Error", error);
