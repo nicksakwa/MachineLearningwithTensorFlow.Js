@@ -5,3 +5,8 @@ Here I share my Machine Learning Project with TensorFlow Javascript.
 ## Requirements
 *  Nodejs
 *  TensorFlowJS library
+
+  ## Tensor flow js methods used include
+  * function extract for selecting data from data sets
+  * function removeError for filtering the data and cleaning the data
+    
