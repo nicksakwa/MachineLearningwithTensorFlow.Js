@@ -10,5 +10,6 @@ Here I share my Machine Learning Project with TensorFlow Javascript.
   * function extract for selecting data from data sets
   * function removeError for filtering the data and cleaning the data
   * Function fetch to fetch and display the filtered data
+  * Tfplot() to Plot the data 
     
     
