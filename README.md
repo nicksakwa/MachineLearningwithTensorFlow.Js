@@ -9,4 +9,6 @@ Here I share my Machine Learning Project with TensorFlow Javascript.
   ## Tensor flow js methods used include
   * function extract for selecting data from data sets
   * function removeError for filtering the data and cleaning the data
+  * Function fetch to fetch and display the filtered data
+    
     
