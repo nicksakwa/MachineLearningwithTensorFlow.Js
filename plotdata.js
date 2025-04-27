@@ -1,3 +1,4 @@
+const fs = require('fs').promises
 function extractData(obj){
     return {x:obj.Horsepower, y:obj.Miles_per_Gallon};
 }
@@ -10,11 +11,14 @@ function tplot(values, surface){
         {xLabel:'Horsepower', yLabel:'MPG',});
 }
 async function runTF(){
-    const jsonData= await fetch('cardata.json');
-    let values = await jsonData.json();
-    values= values.map(extractData).filter(removeErrors);
+    try{
+    const jsonData= await fs.readFile('cardata.json', 'utf-8');
+    const values = JSON.parse(jsonData).map(extractData).filter(removeErrors);
     const surface1= document.getElementById("plot1");
     tfplot(value,surface1);
+} catch(error) {
+    console.error("Error reading or processing the JSON file:", error);
+}
 }
 
 runTF();
