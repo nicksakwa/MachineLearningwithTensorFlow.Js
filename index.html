@@ -13,10 +13,18 @@
     </style>
 </head>
 <body>
+    <div id="plot1"></div>
+    <script>
     async function tplot(values, surface){
         await tfvis.render.scatterplot(surface,
         {value: values, series:['original']},
         {xLabel:'Horsepower', yLabel:'MPG'});
     }
+    async function runPlotter(){
+        const surface1=document.getElementById("plot1");
+        const processedData=JSON.parse('[{"x":503,"y":23},{"x":444,"y":18},{"x":285,"y":17},{"x":473,"y":20}]');
+        tplot(processedData, surface1);
+    }
+    </script>
 </body>
 
