@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TensorFlow.js Plot</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+    <script src="plotter.js"></script>
+    <style>
+        #plot1{
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    async function tplot(values, surface){
+        await tfvis.render.scatterplot(surface,
+        {value: values, series:['original']},
+        {xLabel:'Horsepower', yLabel:'MPG'});
+    }
+</body>
+
