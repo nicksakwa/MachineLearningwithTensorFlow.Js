@@ -4,7 +4,6 @@
     <title>TensorFlow.js Plot</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
-    <script src="plotter.js"></script>
     <style>
         #plot1{
             width: 400px;
@@ -17,14 +16,20 @@
     <script>
     async function tplot(values, surface){
         await tfvis.render.scatterplot(surface,
-        {value: values, series:['original']},
+        {values: values, series:['original']},
         {xLabel:'Horsepower', yLabel:'MPG'});
     }
     async function runPlotter(){
+        try {
         const surface1=document.getElementById("plot1");
-        const processedData=JSON.parse('[{"x":503,"y":23},{"x":444,"y":18},{"x":285,"y":17},{"x":473,"y":20}]');
-        tplot(processedData, surface1);
+        const response = await fetch('/data');
+        const processedData= await response.json();
+        await tplot(processedData, surface1);
+        } catch(error){
+            console.error("Error in runPlotter:", error);
+        }
     }
+    runPlotter();
     </script>
 </body>
 
